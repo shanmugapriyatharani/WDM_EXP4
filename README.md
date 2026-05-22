@@ -27,23 +27,29 @@
 
 ### Visualization:
 ```python
-# Create a list to store counts of visitors in each age group
-/*WRITE YOUR CODE HERE
-
-# Count visitors in each age group
-/*WRITE YOUR CODE HERE
-    
-# Define age group labels and plot a bar chart
-/*WRITE YOUR CODE HERE
-
-plt.figure(figsize=(8, 6))
-plt.bar(age_group_labels, visitor_counts, color='skyblue')
+import pandas as pd
+df=pd.read_csv('/content/clustervisitor.csv')
+print(df)
+cluster={"Young":(df['Age']<=30),"Middle":((df['Age']>30) & (df['Age']<=50)),"Old":(df['Age']>50)}
+count=[]
+for group,condition in cluster.items():
+  visitors=df[condition]
+  count.append(len(visitors))
+  print(f"The visitors on {group} are :")
+  print(visitors)
+  print("count=",len(visitors))
+import matplotlib.pyplot as plt
+plt.figure(figsize=(8,6))
+plt.bar(['Young','Middle','Old'],count,color="skyblue")
 plt.xlabel('Age Groups')
 plt.ylabel('Number of Visitors')
-plt.title('Visitor Distribution Across Age Groups')
+plt.title("Visitor Distribution Across Age Groups")
 plt.show()
 ```
 ### Output:
+<img width="462" height="692" alt="image" src="https://github.com/user-attachments/assets/842cf8d5-7ea6-4681-98ad-380ef69db608" />
 
+<img width="781" height="558" alt="image" src="https://github.com/user-attachments/assets/c020d268-e7e8-4dbe-aba7-f2bdb6331395" />
 
 ### Result:
+The implementation of Cluster and Visitor Segmentation for Navigation patterns in Python has been executed successfully.
